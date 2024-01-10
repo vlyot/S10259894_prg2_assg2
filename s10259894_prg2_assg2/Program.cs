@@ -1,4 +1,6 @@
-﻿internal class Program
+﻿using static System.Formats.Asn1.AsnWriter;
+
+internal class Program
 {
     private static void Main(string[] args)
     {
@@ -39,17 +41,80 @@ abstract class IceCream
 
     public IceCream(string option, int scoops, List<Flavour> flavours, List<Topping> toppings) 
     { 
-        this.option = option;
-        this.scoops = scoops;
-        this.flavours = flavours;
-        this.toppings = toppings;
+        this.Option = option;
+        this.Scoops = scoops;
+        this.Flavours = flavours;
+        this.Toppings = toppings;
     }
     public override string ToString()
     {
-        return $"Option: {option}, Scoops: {scoops}, Flavours: {flavours}, Toppings: {toppings}";
+        return $"Option: {Option}, Scoops: {Scoops}, Flavours: {Flavours}, Toppings: {Toppings}";
     }
 }
 
+class Cup : IceCream
+{
+    public Cup() { }
+
+    public Cup(string option, int scoops, List<Flavour> flavours, List<Topping> toppings):base(option,scoops, flavours, toppings)
+    {
+        Option = option;
+        Scoops = scoops;
+        Flavours = flavours;
+        Toppings = toppings;
+    }
+    public override string ToString()
+    {
+        return $"Option: {Option}, Scoops: {Scoops}, Flavours: {Flavours}, Toppings: {Toppings}";
+    }
+}
+class Cone : IceCream
+{
+    private bool dipped;
+    public bool Dipped
+    {
+        get { return dipped; }
+        set { dipped = value; }
+    }
+    public Cone() { }
+    public Cone(string option, int scoops, List<Flavour> flavours, List<Topping> toppings, bool dipped) : base(option, scoops, flavours, toppings)
+    {
+        Option = option;
+        Scoops = scoops;
+        Flavours = flavours;
+        Toppings = toppings;
+        Dipped = dipped;
+    }
+
+    public override string ToString()
+    {
+        return $"Option: {Option}, Scoops: {Scoops}, Flavours: {Flavours}, Toppings: {Toppings}, Dipped: {Dipped}";
+    }
+}
+
+class Waffle : IceCream
+{
+    private string waffleFlavour;
+    public string WaffleFlavour
+    {
+        get { return waffleFlavour; }
+        set { waffleFlavour = value; }
+    }
+    public Waffle() { }
+
+    public Waffle(string option, int scoops, List<Flavour> flavours, List<Topping> toppings, string waffleflavour) : base(option, scoops, flavours, toppings)
+    {
+        Option = option;
+        Scoops = scoops;
+        Flavours = flavours;
+        Toppings = toppings;
+        WaffleFlavour = waffleflavour;
+    }
+    public override string ToString()
+    {
+        return $"Option: {Option}, Scoops: {Scoops}, Flavours: {Flavours}, Toppings: {Toppings}, Waffle Flavour: {WaffleFlavour}";
+    }
+}
 class Flavour
 {
     private string type;
@@ -77,9 +142,9 @@ class Flavour
 
     public Flavour(string type, bool premium, int quantity) 
     { 
-        this.type = type;
-        this.premium = premium;
-        this.quantity = quantity;
+        this.Type = type;
+        this.Premium = premium;
+        this.Quantity = quantity;
     }
 
     public override string ToString()
