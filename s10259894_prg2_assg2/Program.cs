@@ -153,7 +153,7 @@ class Cone : IceCream
 
     public override string ToString()
     {
-        return $"Option: {option}, Scoops: {scoops}, Flavours: {flavours}, Toppings: {toppings}";
+        return $"Option: {Option}, Scoops: {Scoops}, Flavours: {Flavours}, Toppings: {Toppings}";
     }
 }
 
