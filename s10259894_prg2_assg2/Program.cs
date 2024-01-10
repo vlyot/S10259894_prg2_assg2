@@ -1,6 +1,4 @@
-﻿using static System.Formats.Asn1.AsnWriter;
-
-internal class Program
+﻿internal class Program
 {
     private static void Main(string[] args)
     {
@@ -13,7 +11,7 @@ abstract class IceCream
     public string Option
     {
         get { return option; }
-        set { option = value.ToLower(); }
+        set { option = value; }
     }
 
     private int scoops;
@@ -41,185 +39,24 @@ abstract class IceCream
 
     public IceCream(string option, int scoops, List<Flavour> flavours, List<Topping> toppings) 
     { 
-        this.Option = option;
-        this.Scoops = scoops;
-        this.Flavours = flavours;
-        this.Toppings = toppings;
-    }
-
-    public abstract double CalculatePrice();
-    public override string ToString()
-    {
-        return $"Option: {Option}, Scoops: {Scoops}, Flavours: {Flavours}, Toppings: {Toppings}";
-    }
-}
-
-class Cup : IceCream
-{
-    public Cup() { }
-
-    public Cup(string option, int scoops, List<Flavour> flavours, List<Topping> toppings):base(option,scoops, flavours, toppings)
-    {
-        Option = option;
-        Scoops = scoops;
-        Flavours = flavours;
-        Toppings = toppings;
-    }
-    public override double CalculatePrice()
-    {
-        double total = 0;
-        foreach (Flavour f in Flavours)
-        {
-            if (f.Type == "vanilla" || f.Type == "chocolate"|| f.Type == "strawberry")
-            {
-                continue;
-            }
-            else if (f.Type == "durian" || f.Type == "ube" || f.Type == "sea salt")
-            {
-                total += 2;
-            }
-        }
-        if (Scoops == 1)
-        {
-            total += 4;
-        }
-        else if (Scoops == 2)
-        {
-            total += 5.50;
-        }
-        else if (Scoops == 3)
-        {
-            total += 6.50;
-        }
-        total += Toppings.Count;
-        return total;
+        this.option = option;
+        this.scoops = scoops;
+        this.flavours = flavours;
+        this.toppings = toppings;
     }
     public override string ToString()
     {
-        return $"Option: {Option}, Scoops: {Scoops}, Flavours: {Flavours}, Toppings: {Toppings}";
-    }
-}
-class Cone : IceCream
-{
-    private bool dipped;
-    public bool Dipped
-    {
-        get { return dipped; }
-        set { dipped = value; }
-    }
-    public Cone() { }
-    public Cone(string option, int scoops, List<Flavour> flavours, List<Topping> toppings, bool dipped) : base(option, scoops, flavours, toppings)
-    {
-        Option = option;
-        Scoops = scoops;
-        Flavours = flavours;
-        Toppings = toppings;
-        Dipped = dipped;
-    }
-
-    public override double CalculatePrice()
-    {
-        double total = 0;
-        foreach (Flavour f in Flavours)
-        {
-            if (f.Type == "vanilla" || f.Type == "chocolate" || f.Type == "strawberry")
-            {
-                continue;
-            }
-            else if (f.Type == "durian" || f.Type == "ube" || f.Type == "sea salt")
-            {
-                total += 2;
-            }
-        }
-        if (Scoops == 1)
-        {
-            total += 4;
-        }
-        else if (Scoops == 2)
-        {
-            total += 5.50;
-        }
-        else if (Scoops == 3)
-        {
-            total += 6.50;
-        }
-        total += Toppings.Count;
-        if (dipped)
-        {
-            total += 2;
-        }
-        return total;
-    }
-
-    public override string ToString()
-    {
-        return $"Option: {Option}, Scoops: {Scoops}, Flavours: {Flavours}, Toppings: {Toppings}, Dipped: {Dipped}";
+        return $"Option: {option}, Scoops: {scoops}, Flavours: {flavours}, Toppings: {toppings}";
     }
 }
 
-class Waffle : IceCream
-{
-    private string waffleFlavour;
-    public string WaffleFlavour
-    {
-        get { return waffleFlavour; }
-        set { waffleFlavour = value.ToLower(); }
-    }
-    public Waffle() { }
-
-    public Waffle(string option, int scoops, List<Flavour> flavours, List<Topping> toppings, string waffleflavour) : base(option, scoops, flavours, toppings)
-    {
-        Option = option;
-        Scoops = scoops;
-        Flavours = flavours;
-        Toppings = toppings;
-        WaffleFlavour = waffleflavour;
-    }
-    public override double CalculatePrice()
-    {
-        double total = 0;
-        foreach (Flavour f in Flavours)
-        {
-            if (f.Type == "vanilla" || f.Type == "chocolate" || f.Type == "strawberry")
-            {
-                continue;
-            }
-            else if (f.Type == "durian" || f.Type == "ube" || f.Type == "sea salt")
-            {
-                total += 2;
-            }
-        }
-        if (Scoops == 1)
-        {
-            total += 4;
-        }
-        else if (Scoops == 2)
-        {
-            total += 5.50;
-        }
-        else if (Scoops == 3)
-        {
-            total += 6.50;
-        }
-        if (WaffleFlavour == "red velvet" || WaffleFlavour == "charcoal" || WaffleFlavour == "pandan"j)
-        {
-            total += 3;
-        }
-        total += Toppings.Count;
-        return total;
-    }
-    public override string ToString()
-    {
-        return $"Option: {Option}, Scoops: {Scoops}, Flavours: {Flavours}, Toppings: {Toppings}, Waffle Flavour: {WaffleFlavour}";
-    }
-}
 class Flavour
 {
     private string type;
     public string Type
     {
         get { return type; }
-        set { type = value.ToLower(); }
+        set { type = value; }
     }
 
     private bool premium;
@@ -240,10 +77,11 @@ class Flavour
 
     public Flavour(string type, bool premium, int quantity) 
     { 
-        this.Type = type;
-        this.Premium = premium;
-        this.Quantity = quantity;
+        this.type = type;
+        this.premium = premium;
+        this.quantity = quantity;
     }
+
     public override string ToString()
     {
         return $"Flavour type: {Type}, premium: {Premium}, quantity: {Quantity}";
@@ -256,7 +94,7 @@ class Topping
     public string Type
     {
         get { return type; }
-        set { type = value.ToLower(); }
+        set { type = value; }
     }
 
     public Topping() { }
@@ -269,35 +107,5 @@ class Topping
     public override string ToString()
     {
         return $"Topping: {Type}";
-    }
-}
-
-class Order
-{
-    private int id;
-    public int Id
-    {
-        get { return id; }
-        set { id = value; }
-    }
-
-    private DateTime timeRecevied;
-    public DateTime TimeRecevied
-    {
-        get { return timeRecevied; }
-        set { timeRecevied = value; }
-    }
-
-    private DateTime? timeFullfilled;
-    public DateTime? TimeFullfilled
-    {
-        get { return timeFullfilled; }
-        set { timeFullfilled = value; }
-    }
-    private List<IceCream> iceCreamList;
-    public List<IceCream> IceCreamList
-    {
-        get { return iceCreamList; }
-        set { iceCreamList = value; }
     }
 }
