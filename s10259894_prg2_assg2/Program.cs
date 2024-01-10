@@ -153,66 +153,10 @@ class Cone : IceCream
 
     public override string ToString()
     {
-        return $"Option: {Option}, Scoops: {Scoops}, Flavours: {Flavours}, Toppings: {Toppings}, Dipped: {Dipped}";
+        return $"Option: {option}, Scoops: {scoops}, Flavours: {flavours}, Toppings: {toppings}";
     }
 }
 
-class Waffle : IceCream
-{
-    private string waffleFlavour;
-    public string WaffleFlavour
-    {
-        get { return waffleFlavour; }
-        set { waffleFlavour = value.ToLower(); }
-    }
-    public Waffle() { }
-
-    public Waffle(string option, int scoops, List<Flavour> flavours, List<Topping> toppings, string waffleflavour) : base(option, scoops, flavours, toppings)
-    {
-        Option = option;
-        Scoops = scoops;
-        Flavours = flavours;
-        Toppings = toppings;
-        WaffleFlavour = waffleflavour;
-    }
-    public override double CalculatePrice()
-    {
-        double total = 0;
-        foreach (Flavour f in Flavours)
-        {
-            if (f.Type == "vanilla" || f.Type == "chocolate" || f.Type == "strawberry")
-            {
-                continue;
-            }
-            else if (f.Type == "durian" || f.Type == "ube" || f.Type == "sea salt")
-            {
-                total += 2;
-            }
-        }
-        if (Scoops == 1)
-        {
-            total += 4;
-        }
-        else if (Scoops == 2)
-        {
-            total += 5.50;
-        }
-        else if (Scoops == 3)
-        {
-            total += 6.50;
-        }
-        if (WaffleFlavour == "red velvet" || WaffleFlavour == "charcoal" || WaffleFlavour == "pandan"j)
-        {
-            total += 3;
-        }
-        total += Toppings.Count;
-        return total;
-    }
-    public override string ToString()
-    {
-        return $"Option: {Option}, Scoops: {Scoops}, Flavours: {Flavours}, Toppings: {Toppings}, Waffle Flavour: {WaffleFlavour}";
-    }
-}
 class Flavour
 {
     private string type;
@@ -269,35 +213,5 @@ class Topping
     public override string ToString()
     {
         return $"Topping: {Type}";
-    }
-}
-
-class Order
-{
-    private int id;
-    public int Id
-    {
-        get { return id; }
-        set { id = value; }
-    }
-
-    private DateTime timeRecevied;
-    public DateTime TimeRecevied
-    {
-        get { return timeRecevied; }
-        set { timeRecevied = value; }
-    }
-
-    private DateTime? timeFullfilled;
-    public DateTime? TimeFullfilled
-    {
-        get { return timeFullfilled; }
-        set { timeFullfilled = value; }
-    }
-    private List<IceCream> iceCreamList;
-    public List<IceCream> IceCreamList
-    {
-        get { return iceCreamList; }
-        set { iceCreamList = value; }
     }
 }
