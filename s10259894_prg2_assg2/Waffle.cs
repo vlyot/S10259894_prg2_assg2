@@ -17,13 +17,18 @@ namespace s10259894_prg2_assg2
 
         public Waffle() { }
 
-        public Waffle(string option, int scoops, List<Flavour> flavours, List<Topping> toppings, string flavour) 
+        public Waffle(string option, int scoops, List<Flavour> flavours, List<Topping> toppings, string flavour):base(option, scoops, flavours, toppings)
         {
             Option = option;
             Scoops = scoops;
             Flavours = flavours;
             Toppings = toppings;
             WaffleFlavour = flavour;
+        }
+
+        public override double CalculatePrice()
+        {
+            return 1;
         }
         public override string ToString()
         {
