@@ -13,4 +13,10 @@
     </Compile>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="customers.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
