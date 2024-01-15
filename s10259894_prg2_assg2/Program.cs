@@ -20,4 +20,15 @@ internal class Program
             Console.WriteLine("{0,10}, {1,10}, {2,10}", data2[0], data2[1], data2[2]);
         }
     }
+    static void InitOrders()
+    {
+        List<Order> list = new List<Order>();
+        string[] data = File.ReadAllLines("orders.csv");
+        string[] header = data[0].Split(',');
+        for (int i = 1; i < data.Length; i++)
+        {
+            string[] data2 = data[i].Split(',');
+            Order order = new Order(Convert.ToInt32(data2[0]), Convert.ToDateTime(data2[2]));
+        }
+    }
 }

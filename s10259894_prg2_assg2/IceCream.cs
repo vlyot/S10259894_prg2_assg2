@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace s10259894_prg2_assg2
 {
-    abstract class IceCream
+    public abstract class IceCream
     {
         private string option;
         public string Option

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace s10259894_prg2_assg2
 {
-    class Cone : IceCream
+    public class Cone : IceCream
     {
         private bool dipped;
         public bool Dipped

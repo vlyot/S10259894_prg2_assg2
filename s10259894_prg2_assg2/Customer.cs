@@ -1,53 +1,62 @@
-﻿using System;
+﻿using s10259894_prg2_assg2;
+using System;
+using System.Xml.Linq;
 
-    public class Customer
+public class Customer
+{
+    private string name;
+    public string Name
     {
-        // Properties
-        public string Name { get; set; }
-        public int MemberId { get; set; }
-        public DateTime Dob { get; set; }
-        public Order CurrentOrder { get; set; }
-        public List<Order> OrderHistory { get; set; }
-        public PointCard Rewards { get; set; }
+        get { return name; }
+        set { name = value; }
+    }
+    private int memberId;
+    public int MemberId
+    {
+        get { return memberId; }
+        set { memberId = value; }
+    }
 
-        // Constructors
-        public Customer()
-        {
-            // Default constructor
-            OrderHistory = new List<Order>();
-            Rewards = new PointCard();
-        }
+    private DateTime dob;
+    public DateTime Dob
+    {
+        get { return dob; }
+        set { dob = value; }
+    }
 
-        public Customer(string name, int memberId, DateTime dob)
-            : this()
-        {
-            Name = name;
-            MemberId = memberId;
-            Dob = dob;
-        }
+    private Order currentOrder = new Order();
+    public Order CurrentOrder
+    {
+        get { return currentOrder; }
+        set { currentOrder = value; }
+    }
+    private List<Order> orderHistory = new List<Order>();
+    public List<Order> OrderHistory
+    {
+        get { return orderHistory; }
+        set { orderHistory = value; }
+    }
 
-        // Methods
-        public Order MakeOrder()
-        {
-            // Implementation for making an order
-            // You might create a new Order object, update CurrentOrder, and add it to OrderHistory
-            Order newOrder = new Order();
-            CurrentOrder = newOrder;
-            OrderHistory.Add(newOrder);
-            return newOrder;
-        }
+    private PointCard rewards;
+    public PointCard Rewards
+    {
+        get { return rewards;}
+        set { rewards = value; }
+    }
 
-        public bool IsBirthday()
-        {
-            // Implementation for checking if it's the customer's birthday
-            DateTime today = DateTime.Today;
-            return Dob.Month == today.Month && Dob.Day == today.Day;
-        }
+    public Customer() { }
 
-        public override string ToString()
-        {
-            // Custom implementation for converting the object to a string
-            return $"Customer: {Name}, Member ID: {MemberId}, Date of Birth: {Dob.ToShortDateString()}, {Rewards}";
-        }
+    public Customer(string name, int memberid, DateTime dob)
+    {
+        Name = name;
+        MemberId = memberid;
+        Dob = dob;
+    }
+
+
+    public override string ToString()
+    {
+        // Custom implementation for converting the object to a string
+        return $"Customer: {Name}, Member ID: {MemberId}, Date of Birth: {Dob}";
     }
 }

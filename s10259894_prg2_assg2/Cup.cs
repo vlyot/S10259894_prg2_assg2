@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace s10259894_prg2_assg2
 {
-    class Cup : IceCream
+    public class Cup : IceCream
     {
         public Cup() { }
 

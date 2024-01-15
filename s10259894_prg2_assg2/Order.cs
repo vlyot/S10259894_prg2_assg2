@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace s10259894_prg2_assg2
 {
-    class Order
+    public class Order
     {
         private int id;
         public int Id
