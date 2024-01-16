@@ -10,6 +10,7 @@ public class Customer
         get { return name; }
         set { name = value; }
     }
+
     private int memberId;
     public int MemberId
     {
@@ -30,6 +31,7 @@ public class Customer
         get { return currentOrder; }
         set { currentOrder = value; }
     }
+
     private List<Order> orderHistory = new List<Order>();
     public List<Order> OrderHistory
     {
@@ -45,7 +47,6 @@ public class Customer
     }
 
     public Customer() { }
-
     public Customer(string name, int memberid, DateTime dob)
     {
         Name = name;
