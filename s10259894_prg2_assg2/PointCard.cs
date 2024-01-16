@@ -23,13 +23,15 @@ public class PointCard
         set { tier = value; }
     }
 
-    public PointCard() { }
-
+    public PointCard() { 
     public PointCard(int points,  int punchcard)
     {
         Points = points;
         PunchCard = punchcard;
     }
+    private void SetTier() { }
+
+
     public override string ToString()
     {
         return $"PointCard: Points - {Points}, PunchCard - {PunchCard}, Tier - {Tier}";
