@@ -23,8 +23,8 @@ public class PointCard
         set { tier = value; }
     }
 
-    public PointCard() { 
-    public PointCard(int points,  int punchcard)
+    public PointCard() { }
+    PointCard(int points,  int punchcard)
     {
         Points = points;
         PunchCard = punchcard;
