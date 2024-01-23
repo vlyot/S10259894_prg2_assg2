@@ -1,19 +1,85 @@
 ﻿using s10259894_prg2_assg2;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Reflection;
 using static System.Formats.Asn1.AsnWriter;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-internal class Program
+List<Customer> customerList = new List<Customer>();
+
+while (true)
 {
-    private static void Main(string[] args)
+    DisplayMenu();
+    int userChoice = GetOption();
+    switch (userChoice)
     {
-        List<Order> orders = CreateOrders();
-        List<Customer> customers = CreateCustomer();
+        case 0:
+            Console.WriteLine("\n[0] Exit\n");
+            Console.WriteLine("Exiting the program.");
+            return;
+
+        case 1:
+            Console.WriteLine("\n[1] List all customers: \n");
+            DisplayCustomers();
+            break;
+
+        case 2:
+            Console.WriteLine("You selected Option 2.");
+            break;
+
+        case 3:
+            Console.WriteLine("\n[3] Register new customer: \n");
+
+            break;
+
+        case 4:
+            Console.WriteLine("\n[4] Create new order: \n");
+
+            break;
+        case 5:
+            Console.WriteLine("\nDisplay customer order. ");
+            DisplayOrders();
+            break;
+        default:
+            Console.WriteLine("Invalid option. Please choose again.");
+            break;
+    }
+
+
+
+
+    void DisplayMenu()
+    {
+        Console.WriteLine("\n---------------Menu--------------");
+        Console.WriteLine("[1] List all customers: ");
+        Console.WriteLine("[2] List all current orders: ");
+        Console.WriteLine("[3] Register new customer: ");
+        Console.WriteLine("[4] Create customer order: ");
+        Console.WriteLine("[5] Display customer order details: ");
+        Console.WriteLine("[6] Modify order details: ");
+        Console.WriteLine("[0] Exit: ");
+        Console.WriteLine("---------------------------------");
+    }
+
+    int GetOption()
+    {
+        int choice;
+        do
+        {
+            Console.Write("Enter your choice: ");
+        } while (!int.TryParse(Console.ReadLine(), out choice) || choice < 0 || choice > 6);
+
+        return choice;
+    }
+    void Main(string[] args)
+    {
+        //List<Order> orders = CreateOrders();
+        //List<Customer> customers = CreateCustomer();
         List<IceCream> IceCreamList = new List<IceCream>();
         Queue<Order> Queue = new Queue<Order>();
         DisplayCustomers();
     }
-    static void DisplayCustomers()
+    void DisplayCustomers()
     {
         string[] data = File.ReadAllLines("customers.csv");
         string[] header = data[0].Split(',');
@@ -24,7 +90,8 @@ internal class Program
             Console.WriteLine("{0,10}, {1,10}, {2,10}", data2[0], data2[1], data2[2]);
         }
     }
-    static void DisplayOrders()
+
+    /*void DisplayOrders()
     {
         string[] ordersData = File.ReadAllLines("orders.csv");
         string[] customersData = File.ReadAllLines("customers.csv");
@@ -56,8 +123,9 @@ internal class Program
 
         // Display orders for regular members
         DisplayOrders("Regular Members", regularMembers, ordersData);
-    }
-    static void DisplayOrders(string memberType, List<string> memberIds, string[] ordersData)
+    }*/
+
+    void DisplayOrders(string memberType, List<string> memberIds, string[] ordersData)
     {
         Console.WriteLine($"\nDisplaying {memberType} Orders:");
 
@@ -72,31 +140,18 @@ internal class Program
             }
         }
     }
-    static List<Customer> CreateCustomer()
-    {
-        List<Customer> customers = new List<Customer>();
-        string[] data = File.ReadAllLines("customers.csv");
-        string[] header = data[0].Split(',');
-        for (int i = 1; i < data.Length; i++)
-        {
-            string[] data2 = data[i].Split(",");
-            Customer c = new Customer(data2[0], Convert.ToInt32(data2[1]), Convert.ToDateTime(data2[2]));
-            customers.Add(c);
-        }
-        Console.WriteLine("Customers have been created");
-        return customers;
-    }
-    static List<Order> CreateOrders()
-    {
-        List<Order> orders = new List<Order>();
-        string[] data = File.ReadAllLines("orders.csv");
-        string[] header = data[0].Split(',');
-        for (int i = 1; i < data.Length; i++)
-        {
-            string[] data2 = data[i].Split(",");
-            Order o = new Order(Convert.ToInt32(data2[0]), Convert.ToDateTime(data2[2]));
-            orders.Add(o);
-        }
-        return orders;
-    }
 }
+/*static List<Customer> CreateCustomer()
+{
+    List<Customer> customers = new List<Customer>();
+    string[] data = File.ReadAllLines("customers.csv");
+    string[] header = data[0].Split(',');
+    for (int i = 1; i < data.Length; i++)
+    {
+        string[] data2 = data[i].Split(",");
+        Customer c = new Customer(data2[0], Convert.ToInt32(data2[1]), Convert.ToDateTime(data2[2]));
+        customers.Add(c);
+    }
+    Console.WriteLine("Customers have been created");
+    return customers;
+}*/
